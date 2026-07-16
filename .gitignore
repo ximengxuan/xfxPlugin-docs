@@ -1,5 +1,1 @@
-node_modules/
-docs/.vitepress/dist/
-docs/.vitepress/cache/
-.DS_Store
-Thumbs.db
+# 公开仓库仅存放构建后的静态文件，无需忽略

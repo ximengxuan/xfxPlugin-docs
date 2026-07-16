@@ -1,25 +1,9 @@
 # xfxPlugin 小飞侠插件文档
 
-> 安卓脚本开发增强接口文档
+> 安卓脚本开发增强接口在线文档
 
-基于 [VitePress](https://vitepress.dev/) + [Teek 主题](https://github.com/Kele-Bingtang/vitepress-theme-teek) 构建。
+📖 在线访问：https://ximengxuan.github.io/xfxPlugin-docs/
 
-## 本地开发
+---
 
-```bash
-# 安装依赖
-npm install
-
-# 启动开发服务器
-npm run docs:dev
-
-# 构建
-npm run docs:build
-
-# 预览构建结果
-npm run docs:preview
-```
-
-## 在线文档
-
-访问：https://ximengxuan.github.io/xfxPlugin-docs/
+本仓库仅存放构建后的静态文件，由私有仓库 `ximengxuan/xfx` 自动推送更新。
