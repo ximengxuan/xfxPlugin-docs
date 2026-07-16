@@ -22,4 +22,4 @@ npm run docs:preview
 
 ## 在线文档
 
-访问：https://你的用户名.github.io/xfxPlugin-docs/
+访问：https://ximengxuan.github.io/xfxPlugin-docs/

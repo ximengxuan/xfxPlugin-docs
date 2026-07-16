@@ -29,9 +29,8 @@ const teekConfig = defineTeekConfig({
 // VitePress 配置
 export default defineConfig({
   extends: teekConfig,   // 将主题配置合并到 VitePress 配置里
-  // GitHub Pages 部署基路径，仓库名为 xfxPlugin-docs
-  // 如果使用自定义域名则改为 '/'
-  base: '/xfxPlugin-docs/',
+  // dist 推送到公开仓库根目录，使用 '/'
+  base: '/',
   title: "xfxPlugin 小飞侠插件",
   description: "安卓脚本开发增强接口",
   themeConfig: {

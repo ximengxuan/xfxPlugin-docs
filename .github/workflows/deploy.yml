@@ -1,27 +1,18 @@
-name: Deploy VitePress to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
-  # 推送 main 分支时触发
   push:
     branches: [main]
-  # 支持手动触发
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# 只允许一个并发部署
-concurrency:
-  group: pages
-  cancel-in-progress: false
+  contents: write
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout source
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -36,21 +27,14 @@ jobs:
       - name: Build VitePress
         run: npm run docs:build
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy dist to public repo
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
         with:
-          path: docs/.vitepress/dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          source-directory: docs/.vitepress/dist
+          destination-github-username: ximengxuan
+          destination-repository-name: xfxPlugin-docs
+          user-email: actions@github.com
+          target-branch: main
+          commit-message: "deploy: auto build from source [skip ci]"
