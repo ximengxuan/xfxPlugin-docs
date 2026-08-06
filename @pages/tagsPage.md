@@ -1,4 +1,4 @@
 ---
-url: /@pages/tagsPage.md
+url: /xfxPlugin-docs/@pages/tagsPage.md
 ---
 

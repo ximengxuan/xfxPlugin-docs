@@ -1,4 +1,4 @@
 ---
-url: /@pages/riskLinkPage.md
+url: /xfxPlugin-docs/@pages/riskLinkPage.md
 ---
 

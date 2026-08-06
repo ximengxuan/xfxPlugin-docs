@@ -1,4 +1,4 @@
 ---
-url: /@pages/articleOverviewPage.md
+url: /xfxPlugin-docs/@pages/articleOverviewPage.md
 ---
 

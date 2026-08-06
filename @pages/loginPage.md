@@ -1,4 +1,4 @@
 ---
-url: /@pages/loginPage.md
+url: /xfxPlugin-docs/@pages/loginPage.md
 ---
 

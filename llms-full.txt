@@ -1,5 +1,5 @@
 ---
-url: /01.接口/01.关于.md
+url: /xfxPlugin-docs/01.接口/01.关于.md
 ---
 
 # XFX Plugin - 安卓工具类插件
@@ -34,7 +34,7 @@ XFX Plugin 不收集、获取或上传任何个人信息。
 ---
 
 ---
-url: /01.接口/10.下载.md
+url: /xfxPlugin-docs/01.接口/10.下载.md
 ---
 
 # 下载
@@ -68,7 +68,7 @@ url: /01.接口/10.下载.md
 ---
 
 ---
-url: /01.接口/15.调用指南.md
+url: /xfxPlugin-docs/01.接口/15.调用指南.md
 ---
 
 # 调用指南
@@ -459,7 +459,7 @@ main();
 ---
 
 ---
-url: /01.接口/20.更新日志.md
+url: /xfxPlugin-docs/01.接口/20.更新日志.md
 ---
 
 # 更新日志
@@ -623,7 +623,7 @@ url: /01.接口/20.更新日志.md
 ---
 
 ---
-url: /01.接口/30.普通接口/40.ActivityOps_Activity操作.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/40.ActivityOps_Activity操作.md
 ---
 
 # ActivityOps\_Activity操作
@@ -1140,7 +1140,7 @@ print('已启动应用市场搜索')
 ---
 
 ---
-url: /01.接口/30.普通接口/45.AdaptScreenOps_屏幕单位转换.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/45.AdaptScreenOps_屏幕单位转换.md
 ---
 
 # AdaptScreenOps\_屏幕单位转换
@@ -1294,7 +1294,7 @@ print("px2sp:", adaptScreenOps.px2sp(48.0))
 ---
 
 ---
-url: /01.接口/30.普通接口/50.AppOps_App操作.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/50.AppOps_App操作.md
 ---
 
 # AppOps\_App操作
@@ -2370,7 +2370,7 @@ softOps.setContext(LuaEngine.getContext())  -- 设置类的上下文
 ---
 
 ---
-url: /01.接口/30.普通接口/70.DeviceOps_设备信息.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/70.DeviceOps_设备信息.md
 ---
 
 # DeviceOps\_设备信息与操作
@@ -3368,7 +3368,7 @@ print('\n示例执行完成！')
 ---
 
 ---
-url: /01.接口/30.普通接口/80.EncryptOps_加密解密.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/80.EncryptOps_加密解密.md
 ---
 
 # EncryptOps\_加密解密
@@ -5004,7 +5004,7 @@ print("File MD5:", encOps.encryptMD5FileToString("/sdcard/test.txt"))
 ---
 
 ---
-url: /01.接口/30.普通接口/90.FileOps_文件目录操作.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/90.FileOps_文件目录操作.md
 ---
 
 # FileOps\_文件目录操作
@@ -6103,7 +6103,7 @@ end
 ---
 
 ---
-url: /01.接口/30.普通接口/97.ToastOps_Toast增强.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/97.ToastOps_Toast增强.md
 ---
 
 # ToastOps\_Toast增强
@@ -6290,7 +6290,7 @@ print("lastErrorMsg", tipOps.getLastErrorMsg())
 ---
 
 ---
-url: /01.接口/30.普通接口/100.HashSetOps_集合.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/100.HashSetOps_集合.md
 ---
 
 # HashSetOps\_集合
@@ -6847,7 +6847,7 @@ spStaticOps.put('manual_used_ips', hashSetOps.toJsonArray(SET_ID))
 ---
 
 ---
-url: /01.接口/30.普通接口/101.HashMapOps_映射.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/101.HashMapOps_映射.md
 ---
 
 # HashMapOps\_映射
@@ -7531,7 +7531,7 @@ hashMapOps.putAll(MAP_ID, spJson)
 ---
 
 ---
-url: /01.接口/30.普通接口/104.ImageOps_图片操作.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/104.ImageOps_图片操作.md
 ---
 
 # ImageOps\_图片操作
@@ -8495,7 +8495,7 @@ end
 ---
 
 ---
-url: /01.接口/30.普通接口/110.NetworkOps_网络信息.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/110.NetworkOps_网络信息.md
 ---
 
 # NetworkOps\_网络信息
@@ -8940,7 +8940,7 @@ print('\n========== 网络操作示例完成 ==========')
 ---
 
 ---
-url: /01.接口/30.普通接口/115.NumberOps_数字操作.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/115.NumberOps_数字操作.md
 ---
 
 # NumberOps\_数字操作
@@ -9631,7 +9631,7 @@ end
 ---
 
 ---
-url: /01.接口/30.普通接口/120.PhoneOps_电话操作.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/120.PhoneOps_电话操作.md
 ---
 
 # PhoneOps\_电话操作
@@ -9844,7 +9844,7 @@ phOps.sendSmsSilent("10086", "hello")
 ---
 
 ---
-url: /01.接口/30.普通接口/130.QueueOps_队列.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/130.QueueOps_队列.md
 ---
 
 # QueueOps\_队列
@@ -10139,7 +10139,7 @@ print("delete:", queueOps.delete("q1"))
 ---
 
 ---
-url: /01.接口/30.普通接口/135.StackOps_栈.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/135.StackOps_栈.md
 ---
 
 # StackOps\_栈
@@ -10411,7 +10411,7 @@ print("delete:", stackOps.delete("s1"))
 ---
 
 ---
-url: /01.接口/30.普通接口/138.RandomOps_随机生成.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/138.RandomOps_随机生成.md
 ---
 
 # RandomOps\_随机生成
@@ -10842,7 +10842,7 @@ print("QQ风格:", randomOps.qqNickName())
 ---
 
 ---
-url: /01.接口/30.普通接口/140.RegexOps_正则表达式.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/140.RegexOps_正则表达式.md
 ---
 
 # RegexOps\_正则表达式
@@ -11253,7 +11253,7 @@ print('\n========== 正则表达式操作示例完成 ==========')
 ---
 
 ---
-url: /01.接口/30.普通接口/145.RomOps_ROM信息.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/145.RomOps_ROM信息.md
 ---
 
 # RomOps\_ROM信息
@@ -11366,7 +11366,7 @@ print("RomInfo:", info)
 ---
 
 ---
-url: /01.接口/30.普通接口/150.ScreenOps_屏幕操作.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/150.ScreenOps_屏幕操作.md
 ---
 
 # ScreenOps\_屏幕操作
@@ -12501,7 +12501,7 @@ PaddleOcr.release()
 ---
 
 ---
-url: /01.接口/30.普通接口/155.ShellOps_Shell命令.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/155.ShellOps_Shell命令.md
 ---
 
 # ShellOps\_Shell命令
@@ -12580,7 +12580,7 @@ print("exec ok:", shellOps.execCmdSuccess("mkdir -p /sdcard/tmp", false))
 ---
 
 ---
-url: /01.接口/30.普通接口/160.StringOps_字符串操作.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/160.StringOps_字符串操作.md
 ---
 
 # StringOps\_字符串操作
@@ -14140,7 +14140,7 @@ print(#tbData == 2 and tbData[2] or nil)
 ---
 
 ---
-url: /01.接口/30.普通接口/175.SPStaticOps_SP静态操作.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/175.SPStaticOps_SP静态操作.md
 ---
 
 # SPStaticOps\_SP静态操作
@@ -14445,7 +14445,7 @@ print('\n========== SharedPreferences 静态操作示例完成 ==========')
 ---
 
 ---
-url: /01.接口/30.普通接口/180.SPOps_SP实例操作.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/180.SPOps_SP实例操作.md
 ---
 
 # SPOps\_SP实例操作
@@ -14812,7 +14812,7 @@ print('  通知: ' .. tostring(notifications))
 ---
 
 ---
-url: /01.接口/30.普通接口/185.ThreadOps_多线程.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/185.ThreadOps_多线程.md
 ---
 
 # ThreadOps\_多线程
@@ -14941,7 +14941,7 @@ sleep(2000) -- 等待2秒，以便观察UI线程和后台线程的执行结果
 ---
 
 ---
-url: /01.接口/30.普通接口/190.TimeOps_时间操作.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/190.TimeOps_时间操作.md
 ---
 
 # TimeOps\_时间操作
@@ -15543,7 +15543,7 @@ print("getSecondsBetween: " .. tostring(timeOps.getSecondsBetween(startMillis, e
 ---
 
 ---
-url: /01.接口/30.普通接口/200.VolumeOps_音量与振动.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/200.VolumeOps_音量与振动.md
 ---
 
 # VolumeOps\_音量与振动
@@ -15777,7 +15777,7 @@ local FLAG_VIBRATE = AudioManager.FLAG_VIBRATE         -- 震动
 ---
 
 ---
-url: /01.接口/30.普通接口/235.ZipOps_Zip压缩与解压.md
+url: /xfxPlugin-docs/01.接口/30.普通接口/235.ZipOps_Zip压缩与解压.md
 ---
 
 # ZipOps\_Zip压缩与解压
@@ -15885,7 +15885,7 @@ print("unzip charset:", zipOps.unzipFile("/sdcard/a.zip", "/sdcard/out_utf8", "U
 ---
 
 ---
-url: /01.接口/50.高级接口/60.CosOps_腾讯云COS对象存储.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/60.CosOps_腾讯云COS对象存储.md
 ---
 
 # CosOps\_腾讯云COS对象存储
@@ -16432,7 +16432,7 @@ return json.dumps(result)
 ---
 
 ---
-url: /01.接口/50.高级接口/82.EmailOps_邮件发送.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/82.EmailOps_邮件发送.md
 ---
 
 # EmailOps\_邮件发送
@@ -17227,7 +17227,7 @@ end
 ---
 
 ---
-url: /01.接口/50.高级接口/85.FfmpegOps_音视频处理.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/85.FfmpegOps_音视频处理.md
 ---
 
 # FfmpegOps\_音视频处理
@@ -18357,7 +18357,7 @@ sleep(10000)
 ---
 
 ---
-url: /01.接口/50.高级接口/91.FtpOps_FTP上传下载.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/91.FtpOps_FTP上传下载.md
 ---
 
 # FtpOps\_FTP上传下载
@@ -18920,7 +18920,7 @@ print("完成！")
 ---
 
 ---
-url: /01.接口/50.高级接口/95.FloatLog_悬浮窗日志.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/95.FloatLog_悬浮窗日志.md
 ---
 
 # FloatLog\_悬浮窗日志
@@ -19805,7 +19805,7 @@ floatLogOps.close()
 ---
 
 ---
-url: /01.接口/50.高级接口/96.FloatLog_模拟Toast.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/96.FloatLog_模拟Toast.md
 ---
 
 # FloatLog\_模拟Toast
@@ -20248,7 +20248,7 @@ sleep(4000)
 ---
 
 ---
-url: /01.接口/50.高级接口/99.HidOps_HID蓝牙操作.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/99.HidOps_HID蓝牙操作.md
 ---
 
 # HidOps\_HID蓝牙操作
@@ -20759,7 +20759,7 @@ print("\n=== 所有接口调用完成 ===")
 ---
 
 ---
-url: /01.接口/50.高级接口/105.MqttOps_MQTT双工通信.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/105.MqttOps_MQTT双工通信.md
 ---
 
 # MqttOps\_MQTT双工通信
@@ -21261,7 +21261,7 @@ XFX:closeFloatLog()
 ---
 
 ---
-url: /01.接口/50.高级接口/116.OpencvOps_图像处理.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/116.OpencvOps_图像处理.md
 ---
 
 # OpencvOps\_图像处理
@@ -22427,7 +22427,7 @@ end
 ---
 
 ---
-url: /01.接口/50.高级接口/117.OpenCv实例/01.K歌滑块识别.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/117.OpenCv实例/01.K歌滑块识别.md
 ---
 
 # K歌滑块识别
@@ -22531,7 +22531,7 @@ opcvOps.clearMats()
 ---
 
 ---
-url: /01.接口/50.高级接口/117.OpenCv实例/02.腾讯防水墙滑块识别.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/117.OpenCv实例/02.腾讯防水墙滑块识别.md
 ---
 
 # 腾讯防水墙滑块识别
@@ -22840,7 +22840,7 @@ opcvOps.clearMats()
 ---
 
 ---
-url: /01.接口/50.高级接口/118.PaddleOcrOps_OCR识别.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/118.PaddleOcrOps_OCR识别.md
 ---
 
 # PaddleOcrOps\_OCR识别
@@ -23485,7 +23485,7 @@ XFX:closeFloatLog()
 ---
 
 ---
-url: /01.接口/50.高级接口/122.SQLiteOps_本地数据库.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/122.SQLiteOps_本地数据库.md
 ---
 
 # SQLiteOps\_本地数据库
@@ -23925,7 +23925,7 @@ print('delete db file:', dbOps.delete(dbName))
 ---
 
 ---
-url: /01.接口/50.高级接口/123.MySQLOps_MySQL数据库.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/123.MySQLOps_MySQL数据库.md
 ---
 
 # MySQLOps\_MySQL数据库
@@ -24865,7 +24865,7 @@ MySQL 是服务端数据库，安卓作为客户端，直接直连数据库存�
 ---
 
 ---
-url: /01.接口/50.高级接口/124.MMKVOps_MMKV存储.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/124.MMKVOps_MMKV存储.md
 ---
 
 # MMKVOps\_MMKV存储
@@ -25343,7 +25343,7 @@ print('\n========== MMKV 存储操作示例完成 ==========')
 ---
 
 ---
-url: /01.接口/50.高级接口/125.QrCodeOps_二维码操作.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/125.QrCodeOps_二维码操作.md
 ---
 
 # QrCodeOps\_二维码操作
@@ -25727,7 +25727,7 @@ end
 ---
 
 ---
-url: /01.接口/50.高级接口/195.TtsOps_文本转语音.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/195.TtsOps_文本转语音.md
 ---
 
 # TtsOps\_文本转语音
@@ -26542,7 +26542,7 @@ FileOps.delete(filePath)
 ---
 
 ---
-url: /01.接口/50.高级接口/205.YoloOps_YOLO识别.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/205.YoloOps_YOLO识别.md
 ---
 
 # YoloOps\_YOLO识别
@@ -27064,7 +27064,7 @@ XFX:closeFloatLog()
 ---
 
 ---
-url: /01.接口/50.高级接口/206.ShapeMatchOps_全分辨率梯度匹配.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/206.ShapeMatchOps_全分辨率梯度匹配.md
 ---
 
 # ShapeMatchOps\_全分辨率梯度匹配
@@ -27374,7 +27374,7 @@ end
 ---
 
 ---
-url: /05.指南/01.简介/01.简介.md
+url: /xfxPlugin-docs/05.指南/01.简介/01.简介.md
 ---
 
 # 简介
@@ -27461,7 +27461,7 @@ Teek 是一个轻量、简洁高效、灵活配置、易于扩展的 VitePress �
 ---
 
 ---
-url: /05.指南/01.简介/10.快速开始.md
+url: /xfxPlugin-docs/05.指南/01.简介/10.快速开始.md
 description: Teek 是一个基于 VitePress 构建的主题，本文专门介绍如何快速安装 Teek。
 ---
 
@@ -27674,7 +27674,7 @@ npm add vitepress-theme-teek@latest -D
 ---
 
 ---
-url: /05.指南/01.简介/20.结构化目录.md
+url: /xfxPlugin-docs/05.指南/01.简介/20.结构化目录.md
 ---
 
 # 结构化目录
@@ -27855,7 +27855,7 @@ Teek 生成侧边栏或目录树的数据时，虽然支持无限层嵌套，但
 ---
 
 ---
-url: /05.指南/01.简介/30.永久链接.md
+url: /xfxPlugin-docs/05.指南/01.简介/30.永久链接.md
 ---
 
 # 永久链接
@@ -27977,7 +27977,7 @@ export default defineConfig({
 ---
 
 ---
-url: /05.指南/10.使用/05.Markdown 拓展.md
+url: /xfxPlugin-docs/05.指南/10.使用/05.Markdown 拓展.md
 ---
 
 # Markdown 拓展
@@ -28684,7 +28684,7 @@ https://player.bilibili.com/player.html?bvid=BV11e411m7e8&autoplay=0
 ---
 
 ---
-url: /05.指南/10.使用/10.摘要与封面.md
+url: /xfxPlugin-docs/05.指南/10.使用/10.摘要与封面.md
 ---
 
 # 摘要与封面
@@ -28824,7 +28824,7 @@ const teekConfig = defineTeekConfig({
 ---
 
 ---
-url: /05.指南/10.使用/15.主题增强.md
+url: /xfxPlugin-docs/05.指南/10.使用/15.主题增强.md
 ---
 
 # 主题增强
@@ -28971,7 +28971,7 @@ spotlight: false
 ---
 
 ---
-url: /05.指南/10.使用/20.样式增强.md
+url: /xfxPlugin-docs/05.指南/10.使用/20.样式增强.md
 ---
 
 # 样式增强
@@ -29102,7 +29102,7 @@ import "vitepress-theme-teek/tk-plus/home-card-hover.scss";
 ---
 
 ---
-url: /05.指南/10.使用/25.国际化.md
+url: /xfxPlugin-docs/05.指南/10.使用/25.国际化.md
 ---
 
 # 国际化
@@ -29550,7 +29550,7 @@ export default defineConfig({
 ---
 
 ---
-url: /05.指南/10.使用/30.Vite 插件.md
+url: /xfxPlugin-docs/05.指南/10.使用/30.Vite 插件.md
 ---
 
 # Vite 插件
@@ -29998,7 +29998,7 @@ const teekConfig = defineTeekConfig({
 ---
 
 ---
-url: /05.指南/10.使用/35.站点统计.md
+url: /xfxPlugin-docs/05.指南/10.使用/35.站点统计.md
 ---
 
 # 站点统计
@@ -30138,7 +30138,7 @@ const teekConfig = defineTeekConfig({
 ---
 
 ---
-url: /05.指南/10.使用/40.图标使用.md
+url: /xfxPlugin-docs/05.指南/10.使用/40.图标使用.md
 ---
 
 # 图标使用
@@ -30308,7 +30308,7 @@ import { yourClickIconName } from "vitepress-theme-teek/icons";
 ---
 
 ---
-url: /05.指南/10.使用/45.私密文章.md
+url: /xfxPlugin-docs/05.指南/10.使用/45.私密文章.md
 ---
 
 # 私密文章
@@ -30523,7 +30523,7 @@ const teekConfig = defineTeekConfig({
 ---
 
 ---
-url: /05.指南/20.相关/02.插槽布局.md
+url: /xfxPlugin-docs/05.指南/20.相关/02.插槽布局.md
 ---
 
 # 插槽布局
@@ -30874,7 +30874,7 @@ import Teek, { TkIcon } from "vitepress-theme-teek";
 ---
 
 ---
-url: /05.指南/20.相关/05.路由钩子.md
+url: /xfxPlugin-docs/05.指南/20.相关/05.路由钩子.md
 ---
 
 # 路由钩子
@@ -31016,7 +31016,7 @@ const myFunction = () => {
 ---
 
 ---
-url: /05.指南/20.相关/10.写作排版.md
+url: /xfxPlugin-docs/05.指南/20.相关/10.写作排版.md
 ---
 
 # 写作排版
@@ -31401,7 +31401,7 @@ Microsoft 有个 [`-ms-text-autospace`](http://msdn.microsoft.com/en-us/library/
 ---
 
 ---
-url: /05.指南/20.相关/15.笔记技巧.md
+url: /xfxPlugin-docs/05.指南/20.相关/15.笔记技巧.md
 ---
 
 # 笔记技巧
@@ -32303,7 +32303,7 @@ export default {
 ---
 
 ---
-url: /05.指南/20.相关/99.鸣谢.md
+url: /xfxPlugin-docs/05.指南/20.相关/99.鸣谢.md
 ---
 
 # 鸣谢
@@ -32384,7 +32384,7 @@ Teek 的灵感主要来自于 [vuepress-theme-vdoing](https://doc.xugaoyi.com/)�
 ---
 
 ---
-url: /05.指南/40.开发/01.开发指南.md
+url: /xfxPlugin-docs/05.指南/40.开发/01.开发指南.md
 ---
 
 # 开发指南
@@ -32468,7 +32468,7 @@ pnpm build
 ---
 
 ---
-url: /05.指南/40.开发/05.贡献指南.md
+url: /xfxPlugin-docs/05.指南/40.开发/05.贡献指南.md
 ---
 
 # 贡献指南
@@ -32577,7 +32577,7 @@ git merge upstream/dev
 ---
 
 ---
-url: /10.配置/01.主题配置/01.配置简介.md
+url: /xfxPlugin-docs/10.配置/01.主题配置/01.配置简介.md
 ---
 
 # 配置简介 推荐
@@ -32737,7 +32737,7 @@ Teek 的所有主题配置请阅读 [Types](https://github.com/Kele-Bingtang/vit
 ---
 
 ---
-url: /10.配置/01.主题配置/05.全局配置.md
+url: /xfxPlugin-docs/10.配置/01.主题配置/05.全局配置.md
 ---
 
 # 全局配置
@@ -34088,7 +34088,7 @@ type SiteAnalyticsProvider = {
 ---
 
 ---
-url: /10.配置/01.主题配置/10.Banner 配置.md
+url: /xfxPlugin-docs/10.配置/01.主题配置/10.Banner 配置.md
 ---
 
 # Banner 配置
@@ -34385,7 +34385,7 @@ interface Wallpaper {
 ---
 
 ---
-url: /10.配置/01.主题配置/15.文章列表配置.md
+url: /xfxPlugin-docs/10.配置/01.主题配置/15.文章列表配置.md
 ---
 
 # 文章列表配置
@@ -34623,7 +34623,7 @@ interface TeekConfig {
 ---
 
 ---
-url: /10.配置/01.主题配置/20.卡片栏配置.md
+url: /xfxPlugin-docs/10.配置/01.主题配置/20.卡片栏配置.md
 ---
 
 # 卡片栏配置
@@ -35451,7 +35451,7 @@ key 可选值如下：
 ---
 
 ---
-url: /10.配置/01.主题配置/25.页脚配置.md
+url: /xfxPlugin-docs/10.配置/01.主题配置/25.页脚配置.md
 ---
 
 # 页脚配置
@@ -35760,7 +35760,7 @@ interface FooterGroupLink {
 ---
 
 ---
-url: /10.配置/01.主题配置/30.文章配置.md
+url: /xfxPlugin-docs/10.配置/01.主题配置/30.文章配置.md
 ---
 
 # 文章配置
@@ -36439,7 +36439,7 @@ interface ArticleUpdate {
 ---
 
 ---
-url: /10.配置/01.主题配置/35.评论配置.md
+url: /xfxPlugin-docs/10.配置/01.主题配置/35.评论配置.md
 ---
 
 # 评论配置
@@ -36785,7 +36785,7 @@ export default {
 ---
 
 ---
-url: /10.配置/01.主题配置/40.插件配置.md
+url: /xfxPlugin-docs/10.配置/01.主题配置/40.插件配置.md
 ---
 
 # 插件配置
@@ -37239,7 +37239,7 @@ export default {
 ---
 
 ---
-url: /10.配置/01.主题配置/50.功能页配置.md
+url: /xfxPlugin-docs/10.配置/01.主题配置/50.功能页配置.md
 ---
 
 # 功能页配置
@@ -37498,7 +37498,7 @@ const teekConfig = defineTeekConfig({
 ---
 
 ---
-url: /10.配置/10.frontmatter 配置.md
+url: /xfxPlugin-docs/10.配置/10.frontmatter 配置.md
 ---
 
 # frontmatter 配置
@@ -37973,7 +37973,7 @@ Markdown 文档是否在首页的文章列表中显示。
 ---
 
 ---
-url: /10.配置/20.目录页配置.md
+url: /xfxPlugin-docs/10.配置/20.目录页配置.md
 ---
 
 # 目录页配置
@@ -38103,7 +38103,7 @@ article: false # 不显示在首页的文章列表和归档页
 ---
 
 ---
-url: /10.配置/30.功能页配置.md
+url: /xfxPlugin-docs/10.配置/30.功能页配置.md
 ---
 
 # 功能页配置
@@ -38349,7 +38349,7 @@ article: false
 ---
 
 ---
-url: /10.配置/40.主题增强拓展.md
+url: /xfxPlugin-docs/10.配置/40.主题增强拓展.md
 ---
 
 # 主题增强拓展
@@ -38695,7 +38695,7 @@ export default {
 ---
 
 ---
-url: /15.主题开发/01.开发思路.md
+url: /xfxPlugin-docs/15.主题开发/01.开发思路.md
 ---
 
 # 开发思路
@@ -39079,7 +39079,7 @@ export default {
 ---
 
 ---
-url: /15.主题开发/10.主题配置.md
+url: /xfxPlugin-docs/15.主题开发/10.主题配置.md
 ---
 
 # 主题配置
@@ -39229,7 +39229,7 @@ export default defineConfig({
 ---
 
 ---
-url: /15.主题开发/20.目录结构.md
+url: /xfxPlugin-docs/15.主题开发/20.目录结构.md
 ---
 
 # 目录结构
@@ -39302,7 +39302,7 @@ composables.
 ---
 
 ---
-url: /15.主题开发/30.组件布局.md
+url: /xfxPlugin-docs/15.主题开发/30.组件布局.md
 ---
 
 # 组件结构
@@ -39553,7 +39553,7 @@ comment:
 ---
 
 ---
-url: /15.主题开发/40.样式布局.md
+url: /xfxPlugin-docs/15.主题开发/40.样式布局.md
 ---
 
 # 样式布局
@@ -39972,7 +39972,7 @@ $namespace: "tk" !default; // 假设这里定义了命名空间
 ---
 
 ---
-url: /15.主题开发/60.容器自定义.md
+url: /xfxPlugin-docs/15.主题开发/60.容器自定义.md
 ---
 
 # 容器自定义
@@ -40123,7 +40123,7 @@ Card 容器 API 需要您在 `htmlRender` 函数里传入 HTML 标签，您可�
 ---
 
 ---
-url: /15.主题开发/70.开发技巧.md
+url: /xfxPlugin-docs/15.主题开发/70.开发技巧.md
 ---
 
 # 开发技巧
@@ -40431,7 +40431,7 @@ comment:
 ---
 
 ---
-url: /15.主题开发/80.Vite 插件.md
+url: /xfxPlugin-docs/15.主题开发/80.Vite 插件.md
 ---
 
 # Vite 插件
@@ -40795,42 +40795,42 @@ export default defineBuildConfig({
 ---
 
 ---
-url: /@pages/tagsPage.md
+url: /xfxPlugin-docs/@pages/tagsPage.md
 ---
 
 
 ---
 
 ---
-url: /@pages/categoriesPage.md
+url: /xfxPlugin-docs/@pages/categoriesPage.md
 ---
 
 
 ---
 
 ---
-url: /@pages/archivesPage.md
+url: /xfxPlugin-docs/@pages/archivesPage.md
 ---
 
 
 ---
 
 ---
-url: /10.配置/目录.md
+url: /xfxPlugin-docs/10.配置/目录.md
 ---
 
 
 ---
 
 ---
-url: /@pages/articleOverviewPage.md
+url: /xfxPlugin-docs/@pages/articleOverviewPage.md
 ---
 
 
 ---
 
 ---
-url: /personal.md
+url: /xfxPlugin-docs/personal.md
 ---
 
 # 支持这个项目
@@ -40862,20 +40862,20 @@ url: /personal.md
 ---
 
 ---
-url: /05.指南/目录.md
+url: /xfxPlugin-docs/05.指南/目录.md
 ---
 
 
 ---
 
 ---
-url: /@pages/loginPage.md
+url: /xfxPlugin-docs/@pages/loginPage.md
 ---
 
 
 ---
 
 ---
-url: /@pages/riskLinkPage.md
+url: /xfxPlugin-docs/@pages/riskLinkPage.md
 ---
 

@@ -1,5 +1,5 @@
 ---
-url: /personal.md
+url: /xfxPlugin-docs/personal.md
 ---
 
 # 支持这个项目

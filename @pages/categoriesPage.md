@@ -1,4 +1,4 @@
 ---
-url: /@pages/categoriesPage.md
+url: /xfxPlugin-docs/@pages/categoriesPage.md
 ---
 

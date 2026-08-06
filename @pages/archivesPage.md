@@ -1,4 +1,4 @@
 ---
-url: /@pages/archivesPage.md
+url: /xfxPlugin-docs/@pages/archivesPage.md
 ---
 
