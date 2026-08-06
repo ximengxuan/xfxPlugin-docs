@@ -130,6 +130,6 @@
 - [主题增强拓展](/xfxPlugin-docs/10.配置/40.主题增强拓展.md)
 - [组件结构](/xfxPlugin-docs/15.主题开发/30.组件布局.md)
 - [frontmatter 配置](/xfxPlugin-docs/10.配置/10.frontmatter 配置.md)
-- [Untitled](/xfxPlugin-docs/@pages/riskLinkPage.md)
 - [Untitled](/xfxPlugin-docs/@pages/loginPage.md)
+- [Untitled](/xfxPlugin-docs/@pages/riskLinkPage.md)
 - [Vite 插件](/xfxPlugin-docs/15.主题开发/80.Vite 插件.md)
