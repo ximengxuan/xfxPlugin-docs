@@ -22464,7 +22464,7 @@ end
 url: /xfxPlugin-docs/01.接口/50.高级接口/117.OpencvOps_实例/01.全民K歌滑块识别.md
 ---
 
-# K歌滑块识别
+# 全民K歌滑块识别
 
 ## K歌滑块识别
 
@@ -22642,273 +22642,7 @@ opcvOps.clearMats()
 url: /xfxPlugin-docs/01.接口/50.高级接口/117.OpencvOps_实例/02.腾讯防水墙滑块识别（废弃）.md
 ---
 
-# 腾讯防水墙滑块识别
-
-## 拼图滑块验证码定位（腾讯防水墙）
-
-演示如何用 `OpencvOps` 基础接口实现"拼图滑块验证码"目标缺口定位。
-
-### 适用场景
-
-图片中横向排列 3 个拼图形状（360x361 分辨率最常见）：
-
-* **最左**：空心/浅色描边的「源拼图」（要拖动的滑块图案）
-* **中间 / 最右**：深色填充拼图（其中之一是目标缺口）
-
-> 用基础方法组合定位，自动判断源拼图与哪个深色拼图的形状匹配，取匹配者作为目标，返回**滑块需要拖动的水平像素距离**。
-
-### 用到的接口
-
-只用 `OpencvOps` 的基础方法（**不新增滑块专用方法**）：
-
-| 接口 | 用途 |
-|------|------|
-| `readResMat` | 文件 → Mat 句柄 |
-| `matToGray` | 灰度化 |
-| `matThreshold` | 二值化（多阈值收集候选） |
-| `matAdaptiveThreshold` | 自适应二值化（光照不均时用） |
-| `open` | 开操作去噪 |
-| `getContoursRect` | 轮廓外接矩形 + `fill` 填充率 |
-| `cropMat` | 裁剪 ROI |
-| **`matchContoursShape`** | **新增基础方法**：两个轮廓的 Hu 矩距离（值越小越相似，等价于 cv2.matchShapes） |
-| `drawRect` / `saveMat` | 画框 / 保存（可选） |
-
-> 说明：`matchContoursShape(matA, idxA, matB, idxB, mode, method)` 是新增的**通用形状匹配方法**，对两个二值图分别做轮廓检测，取指定索引的轮廓用 Hu 矩计算 matchShapes 距离。
-
-### 算法思路（4 步）
-
-1. **灰度化 + 多阈值收集候选**：OTSU 正反 + 固定阈值 INV@100/120/140 + 自适应阈值（3×2 种），按 (x/5, y/5) 去重保留面积最大
-2. **过滤候选**：尺寸 20~100、纵横比 0.4~2.5、Y ∈ \[60, 220]、填充率 ≥ 0.1
-3. **选 3 个等间距候选**：按宽度聚类后取最频繁桶，在 15% / 50% / 85% 三个位置各取最近候选
-4. **Hu 矩比较确定目标**：把 3 个候选分别 crop + 二值化，源拼图 vs 中间、右边比 matchShapes 距离，**距离小者即为目标**
-
-### Lua 示例
-
-```lua
--- 拼图滑块验证码目标定位（极简版：用 Hu 矩 + matchShapes 距离做形状匹配）
-local UtilsMain = loader.loadClass('com.xfx.plugin.UtilsMain')
-UtilsMain.init(LuaEngine.getContext())
-local opcvOps = UtilsMain.opencvOps()
-assert(opcvOps)
-
--- 1. 读取图片 + 灰度化
-local srcMat = opcvOps.readResMat("/sdcard/Download/插件实例/20260805_110457_005.png")
-if srcMat == "" then print("读取图片失败"); return end
-local W, H = opcvOps.getWidth(srcMat), opcvOps.getHeight(srcMat)
-local grayMat = opcvOps.matToGray(srcMat)
-
--- 2. 多阈值二值化收集候选（OTSU 正反 + INV@100/120/140 + 自适应 3×2）
-local dedup, cands = {}, {}
-local function addCand(binMat)
-    if binMat == "" then return end
-    local opened = opcvOps.open(binMat, 0, 3, 3, -1, -1, 1); opcvOps.recycle(binMat)
-    if opened == "" then return end
-    local rects = jsonLib.decode(opcvOps.getContoursRect(opened, 0, 2, "")) or {}
-    opcvOps.recycle(opened)
-    for _, r in ipairs(rects) do
-        local w, h = r.right - r.left, r.bottom - r.top
-        local cy = r.top + h // 2
-        if cy >= 60 and cy <= 220 and w >= 20 and w <= 100 and h >= 20 and h <= 100
-           and (w * 1.0 / h) >= 0.4 and (w * 1.0 / h) <= 2.5 and r.fill >= 0.1 then
-            local key = (r.left // 5) .. ',' .. (r.top // 5)
-            if not dedup[key] or (dedup[key].right - dedup[key].left) * (dedup[key].bottom - dedup[key].top) < w * h then
-                r.cx, r.cy, r.w, r.h = r.left + w // 2, cy, w, h
-                dedup[key] = r
-            end
-        end
-    end
-end
-addCand(opcvOps.matThreshold(grayMat, 0, 255, 8))  -- OTSU
-addCand(opcvOps.matThreshold(grayMat, 0, 255, 9))  -- OTSU_INV
-for _, t in ipairs({100, 120, 140}) do addCand(opcvOps.matThreshold(grayMat, t, 255, 1)) end  -- 固定 INV
-for _, bs in ipairs({11, 15, 21}) do
-    addCand(opcvOps.matAdaptiveThreshold(grayMat, 255, 1, 1, bs, 5))  -- ADAPTIVE_INV
-    addCand(opcvOps.matAdaptiveThreshold(grayMat, 255, 1, 0, bs, 5))  -- ADAPTIVE
-end
-for _, v in pairs(dedup) do table.insert(cands, v) end
-if #cands < 3 then print('候选不足'); opcvOps.clearMats(); return end
-
--- 3. 宽度聚类 + 选 3 个等间距候选（15% / 50% / 85%）
-local buckets, bestB = {}, nil
-for _, c in ipairs(cands) do buckets[c.w // 5] = (buckets[c.w // 5] or 0) + 1 end
-for b, n in pairs(buckets) do if not bestB or n > buckets[bestB] then bestB = b end end
-local pool = {}
-for _, c in ipairs(cands) do
-    for d = -2, 2 do if c.w // 5 + d == bestB then table.insert(pool, c); break end end
-end
-table.sort(pool, function(a, b) return a.cx < b.cx end)
-local sel = {}
-for _, tc in ipairs({W * 0.15, W * 0.5, W * 0.85}) do
-    local best, bd = nil, math.huge
-    for _, c in ipairs(pool) do local d = math.abs(c.cx - tc); if d < bd then best, bd = c, d end end
-    local dup = false; for _, s in ipairs(sel) do if s == best then dup = true; break end end
-    if not dup then table.insert(sel, best) end
-end
-if #sel < 3 then sel = {pool[1], pool[math.ceil(#pool/2)], pool[#pool]} end
-table.sort(sel, function(a, b) return a.cx < b.cx end)
-local left, mid, rgt = sel[1], sel[2], sel[3]
-
--- 4. 源拼图推断（fill > 0.5 且 cx > 20% 宽 → 推断左移）
-local src, inferred = left, false
-if left.fill > 0.5 and left.cx > W * 0.20 then
-    local gap = rgt.cx - left.cx
-    local infCx = left.cx - gap * 0.55
-    local infLeft = infCx - left.w // 2
-    if infLeft >= 5 and infCx > 5 then
-        src = { cx = infCx, cy = left.cy, w = left.w, h = left.h,
-                left = infLeft, top = left.top, right = infLeft + left.w, bottom = left.bottom, fill = 0.0 }
-        mid, inferred = left, true
-    end
-end
-
--- 5. Hu 矩比较：源拼图与 mid/rgt 哪个更相似？
-local pad = 2
-local function cropBin(x0, y0, x1, y1, type)
-    local crop = opcvOps.cropMat(grayMat, math.max(0, x0 - pad), math.max(0, y0 - pad),
-                                          math.min(W, x1 + pad), math.min(H, y1 + pad))
-    if crop == "" then return "" end
-    local bin = opcvOps.matThreshold(crop, 0, 255, type); opcvOps.recycle(crop)
-    return bin
-end
-local srcBin = cropBin(src.left, src.top, src.right, src.bottom, 8)  -- 源用 OTSU（浅色前景）
-local midBin = cropBin(mid.left, mid.top, mid.right, mid.bottom, 9)  -- 深色用 OTSU_INV
-local rgtBin = cropBin(rgt.left, rgt.top, rgt.right, rgt.bottom, 9)
-local dMid = opcvOps.matchContoursShape(srcBin, 0, midBin, 0, 0, 2)
-local dRgt = opcvOps.matchContoursShape(srcBin, 0, rgtBin, 0, 0, 2)
-local target, targetIdx = (dMid < dRgt) and mid or rgt, (dMid < dRgt) and 0 or 1
-opcvOps.recycle(srcBin); opcvOps.recycle(midBin); opcvOps.recycle(rgtBin)
-
-print(string.format('源(%d,%d) 推断=%s | 目标(%d,%d) idx=%d | 距离=%d | dMid=%.3f dRgt=%.3f',
-    src.cx, src.cy, tostring(inferred), target.cx, target.cy, targetIdx,
-    target.cx - src.cx, dMid, dRgt))
-
--- 6. 画框（可选）
-local vis = opcvOps.drawRect(srcMat, src.left, src.top, src.right, src.bottom, '#FF0000', 2, false, true)
-opcvOps.drawRect(vis, mid.left, mid.top, mid.right, mid.bottom, '#00FFFF', 1, false, true)
-opcvOps.drawRect(vis, rgt.left, rgt.top, rgt.right, rgt.bottom, '#FF00FF', 1, false, true)
-opcvOps.drawRect(vis, target.cx - 5, target.cy - 5, target.cx + 5, target.cy + 5, '#00FF00', -1, false, true)
-opcvOps.saveMat(vis, '/sdcard/Download/opencvTest/slider_puzzle_result.png')
-
--- 7. 释放
-opcvOps.clearMats()
-```
-
-OOP 简化版本（与 K歌示例同风格）：
-
-```lua
-import('com.nx.assist.lua.LuaEngine')
-local xfxModule = require('lib/XfxPlugin')
-local XFX = xfxModule:new({ apkName = 'xfxPlugin-release.apk', context = LuaEngine.getContext() })
-
-local opcvOps = XFX:getOps('opencvOps'); assert(opcvOps)
-
-local srcMat = opcvOps.readResMat("/sdcard/Download/插件实例/20260805_110457_005.png")
-if srcMat == "" then return end
-local W, H = opcvOps.getWidth(srcMat), opcvOps.getHeight(srcMat)
-local grayMat = opcvOps.matToGray(srcMat)
-
--- 收集候选（5 阈值：OTSU 正反 + INV@100/120/140）
-local dedup = {}
-local function addCand(binMat)
-    if binMat == "" then return end
-    local opened = opcvOps.open(binMat, 0, 3, 3, -1, -1, 1); opcvOps.recycle(binMat)
-    if opened == "" then return end
-    local rects = jsonLib.decode(opcvOps.getContoursRect(opened, 0, 2, "")) or {}
-    opcvOps.recycle(opened)
-    for _, r in ipairs(rects) do
-        local w, h = r.right - r.left, r.bottom - r.top
-        local cy = r.top + h // 2
-        if cy >= 60 and cy <= 220 and w >= 20 and w <= 100 and h >= 20 and h <= 100
-           and (w * 1.0 / h) >= 0.4 and (w * 1.0 / h) <= 2.5 and r.fill >= 0.1 then
-            local key = (r.left // 5) .. ',' .. (r.top // 5)
-            if not dedup[key] or (dedup[key].right - dedup[key].left) * (dedup[key].bottom - dedup[key].top) < w * h then
-                r.cx, r.cy, r.w, r.h = r.left + w // 2, cy, w, h
-                dedup[key] = r
-            end
-        end
-    end
-end
-addCand(opcvOps.matThreshold(grayMat, 0, 255, 8))
-addCand(opcvOps.matThreshold(grayMat, 0, 255, 9))
-for _, t in ipairs({100, 120, 140}) do addCand(opcvOps.matThreshold(grayMat, t, 255, 1)) end
-local cands = {}
-for _, v in pairs(dedup) do table.insert(cands, v) end
-if #cands < 3 then print('候选不足'); opcvOps.clearMats(); return end
-
-local buckets, bestB = {}, nil
-for _, c in ipairs(cands) do buckets[c.w // 5] = (buckets[c.w // 5] or 0) + 1 end
-for b, n in pairs(buckets) do if not bestB or n > buckets[bestB] then bestB = b end end
-local pool = {}
-for _, c in ipairs(cands) do
-    for d = -2, 2 do if c.w // 5 + d == bestB then table.insert(pool, c); break end end
-end
-table.sort(pool, function(a, b) return a.cx < b.cx end)
-local sel = {}
-for _, tc in ipairs({W * 0.15, W * 0.5, W * 0.85}) do
-    local best, bd = nil, math.huge
-    for _, c in ipairs(pool) do local d = math.abs(c.cx - tc); if d < bd then best, bd = c, d end end
-    local dup = false; for _, s in ipairs(sel) do if s == best then dup = true; break end end
-    if not dup then table.insert(sel, best) end
-end
-if #sel < 3 then sel = {pool[1], pool[math.ceil(#pool/2)], pool[#pool]} end
-table.sort(sel, function(a, b) return a.cx < b.cx end)
-local left, mid, rgt = sel[1], sel[2], sel[3]
-
-local src, inferred = left, false
-if left.fill > 0.5 and left.cx > W * 0.20 then
-    local gap = rgt.cx - left.cx
-    local infCx = left.cx - gap * 0.55
-    local infLeft = infCx - left.w // 2
-    if infLeft >= 5 and infCx > 5 then
-        src = { cx = infCx, cy = left.cy, w = left.w, h = left.h,
-                left = infLeft, top = left.top, right = infLeft + left.w, bottom = left.bottom, fill = 0.0 }
-        mid, inferred = left, true
-    end
-end
-
-local pad = 2
-local function cropBin(x0, y0, x1, y1, type)
-    local crop = opcvOps.cropMat(grayMat, math.max(0, x0 - pad), math.max(0, y0 - pad),
-                                          math.min(W, x1 + pad), math.min(H, y1 + pad))
-    if crop == "" then return "" end
-    local bin = opcvOps.matThreshold(crop, 0, 255, type); opcvOps.recycle(crop)
-    return bin
-end
-local srcBin = cropBin(src.left, src.top, src.right, src.bottom, 8)
-local midBin = cropBin(mid.left, mid.top, mid.right, mid.bottom, 9)
-local rgtBin = cropBin(rgt.left, rgt.top, rgt.right, rgt.bottom, 9)
-local dMid = opcvOps.matchContoursShape(srcBin, 0, midBin, 0, 0, 2)
-local dRgt = opcvOps.matchContoursShape(srcBin, 0, rgtBin, 0, 0, 2)
-local target, targetIdx = (dMid < dRgt) and mid or rgt, (dMid < dRgt) and 0 or 1
-opcvOps.recycle(srcBin); opcvOps.recycle(midBin); opcvOps.recycle(rgtBin)
-print(string.format('距离=%d', target.cx - src.cx))
-opcvOps.clearMats()
-```
-
-## 图例
-
-* 蓝框 = 源拼图（src）
-* 青框 = 中间深色拼图（mid）
-* 紫框 = 右侧深色拼图（rgt）
-* 绿点 = 目标缺口中心（target）
-
-![](assets/20260807101207.png)
-
-## 说明
-
-* 核心思路：用**多阈值 + Hu 矩形状匹配**取代多阈值 + 模板匹配，Lua 代码从 270 行降至 130 行（核心逻辑 80 行内）
-* **不新增滑块专用方法**：`matchContoursShape` 是通用形状匹配方法（基于 Hu 矩），可用于任何轮廓形状对比场景
-* **识别到 3 个 puzzle 的成功率：97.2%**（378/389 张腾讯防水墙样本）
-* 滑动距离范围 0~290 像素（取决于目标缺口位置）
-* 失败原因：源拼图轮廓完全不可见 + 同一 Y 行有大尺寸干扰（如屋顶、栏杆），此时会选错候选
-* 不适用场景：拼图被水印/文字遮挡、3 个拼图不在同一 Y 行、拼图尺寸不在 20~100 像素范围
-
-## 调试小贴士
-
-1. **检查截图区域**：确保 `LuaEngine.snapShot` 覆盖整个拼图验证码区域
-2. **保存中间结果**：用 `opcvOps.saveMat` 保存源图，送到 PC 上目视检查
-3. **调整 Y 范围**：如果拼图位置特殊，修改 Lua 中的 `cy >= 60 and cy <= 220`
-4. **验证距离值**：分别打印 `dMid` 与 `dRgt`，值更小者为目标
+# 腾讯防水墙滑块识别（废弃）
 
 ---
 
@@ -22965,7 +22699,11 @@ url: /xfxPlugin-docs/01.接口/50.高级接口/117.OpencvOps_实例/03.大小图
 local UtilsMain = loader.loadClass('com.xfx.plugin.UtilsMain')
 UtilsMain.init(LuaEngine.getContext())
 
+-- -- 引入图像识别类
+-- local opcvOps = XFX:getOps('opencvOps'); assert(opcvOps)
 local opcvOps = UtilsMain.opencvOps()
+
+local path = '/sdcard/Download/opencvTest/'
 
 -- ========== 通用函数：多尺度灰度模板匹配 ==========
 -- 参数：大图 matId、模板 matId、搜索区域、尺度范围、阈值
@@ -22996,16 +22734,16 @@ end
 
 -- ========== 主流程 ==========
 -- 1. 读取采样图（"选择陷阱"UI）
-local sampleImg = opcvOps.readResMat("/sdcard/Pictures/逆战未来_采样图.png")
+local sampleImg = opcvOps.readResMat("/sdcard/Download/插件实例/逆战未来/截图_1785835136206.png")
 if sampleImg == "" then print("读取采样图失败"); return end
 
 -- 2. 在采样图上截取"净水大炮"主体（避开文字/价格）
 --    实际坐标根据采样图调整：x=130~280, y=180~260
 local tplMat = opcvOps.cropMat(sampleImg, 130, 180, 280, 260)
-opcvOps.saveMat(tplMat, "/sdcard/Pictures/净水大炮_模板.png")  -- 可选：保存模板
+opcvOps.saveMat(tplMat, path .. "/净水大炮_模板.png")  -- 可选：保存模板
 
 -- 3. 读取测试图（在底部工具栏搜索）
-local testImg = opcvOps.readResMat("/sdcard/Pictures/逆战未来_测试图.png")
+local testImg = opcvOps.readResMat("/sdcard/Download/插件实例/逆战未来/截图_1785810461705.png")
 if testImg == "" then print("读取测试图失败"); return end
 
 -- 4. 多尺度灰度匹配（0.35~0.50 倍，步长 0.05，阈值 0.7）
@@ -23013,19 +22751,18 @@ local bestMatch = findMultiScale(testImg, tplMat, 400, 590, 850, 720, 0.35, 0.50
 
 -- 5. 输出结果
 if bestMatch then
-    print(string.format("找到净水大炮 score=%.3f 中心=(%d,%d) 大小=%dx%d",
-        bestMatch.score, bestMatch.centerX, bestMatch.centerY,
-        bestMatch.width, bestMatch.height))
+    print(string.format("找到净水大炮 score=%.3f 中心=(%d,%d) 大小=%dx%d",bestMatch.score, bestMatch.centerX, bestMatch.centerY, bestMatch.width, bestMatch.height))
     -- 画红框标记
-    local boxed = opcvOps.drawRect(testImg, bestMatch.left, bestMatch.top,
-        bestMatch.right, bestMatch.bottom, "#FF0000", 2, false, true)
-    opcvOps.saveMat(boxed, "/sdcard/Pictures/找到净水大炮.png")
+    local boxed = opcvOps.drawRect(testImg, bestMatch.left, bestMatch.top,bestMatch.right, bestMatch.bottom, "#FF0000", 2, false, true)
+    opcvOps.saveMat(boxed, path .. "/净水大炮.png")
 else
     print("未找到净水大炮")
 end
 
 opcvOps.recycle(sampleImg)
 opcvOps.recycle(tplMat)
+
+-- 按需：销毁全部Mat资源
 opcvOps.clearMats()
 ```
 
