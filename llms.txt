@@ -56,10 +56,10 @@
 - [YoloOps_YOLO识别](/xfxPlugin-docs/01.接口/50.高级接口/205.YoloOps_YOLO识别.md)
 - [ShapeMatchOps_全分辨率梯度匹配](/xfxPlugin-docs/01.接口/50.高级接口/206.ShapeMatchOps_全分辨率梯度匹配.md)
 
-#### OpenCv实例
+#### OpencvOps_实例
 
-- [K歌滑块识别](/01.接口/50.高级接口/117.OpenCv实例/01.K歌滑块识别.md)
-- [腾讯防水墙滑块识别](/01.接口/50.高级接口/117.OpenCv实例/02.腾讯防水墙滑块识别.md)
+- [K歌滑块识别](/01.接口/50.高级接口/117.OpencvOps_实例/01.K歌滑块识别.md)
+- [腾讯防水墙滑块识别](/01.接口/50.高级接口/117.OpencvOps_实例/02.腾讯防水墙滑块识别.md)
 
 ### 简介
 

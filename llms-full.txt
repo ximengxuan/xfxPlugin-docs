@@ -22427,7 +22427,7 @@ end
 ---
 
 ---
-url: /xfxPlugin-docs/01.接口/50.高级接口/117.OpenCv实例/01.K歌滑块识别.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/117.OpencvOps_实例/01.K歌滑块识别.md
 ---
 
 # K歌滑块识别
@@ -22531,7 +22531,7 @@ opcvOps.clearMats()
 ---
 
 ---
-url: /xfxPlugin-docs/01.接口/50.高级接口/117.OpenCv实例/02.腾讯防水墙滑块识别.md
+url: /xfxPlugin-docs/01.接口/50.高级接口/117.OpencvOps_实例/02.腾讯防水墙滑块识别.md
 ---
 
 # 腾讯防水墙滑块识别
